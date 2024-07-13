@@ -1,7 +1,9 @@
 import { Box } from "@mui/material";
 import ButtonAddUser from "../../components/button/ButtonAddUser";
+import { Card } from "../../components/card/Card";
 
 export default function Bolsistas () {
+
     return (
         <Box sx={{
             display: 'flex',
@@ -37,6 +39,11 @@ export default function Bolsistas () {
                 <h2>EMAIL</h2>
                 <h2>NÍVEL DE ACESSO</h2>
             </div>
+            <Card 
+                userName= 'Jorge'
+                email="jorge@ig.com"
+                acessLevel="3"
+            />
             </Box>
         </Box>
     )

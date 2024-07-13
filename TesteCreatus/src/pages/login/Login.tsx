@@ -22,6 +22,8 @@ export default function Login () {
                 backgroundColor: "white",
                 height: '100vh',
                 width: '52%',
+                borderTopLeftRadius: '14px',
+                borderBottomLeftRadius: '14px'
             }}>
                 <Box sx={{padding: '20%'}}>
                     <h1 style={{
