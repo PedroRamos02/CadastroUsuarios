@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ButtonSave from "../button/ButtonSave";
+import { createUser } from "../../api/Api";
 
 interface ModalUserProps {
     isOpen: boolean;
@@ -8,6 +9,21 @@ interface ModalUserProps {
 }
 
 export const ModalAddUser: React.FC<ModalUserProps> = ({isOpen, setModalOpen}) => {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [accessLevel, setAccessLevel] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const user = { name, email, password, accessLevel };
+        await createUser(user);
+        setName('');
+        setEmail('');
+        setPassword('');
+        setAccessLevel('');
+      };
 
     if (isOpen) {
         return (
