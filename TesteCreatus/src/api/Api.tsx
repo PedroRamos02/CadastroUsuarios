@@ -37,7 +37,9 @@ export const getUsers = async () => {
 };
 
 export const getUserById = async (id: string) => {
-  const response = await axios.get(`${API_URL}/user/${id}`);
+  const response = await axios.get(`${API_URL}/user/${id}`, {
+    headers: getAuthHeaders()
+  });
   return response.data;
 };
 

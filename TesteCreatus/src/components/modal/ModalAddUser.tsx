@@ -5,10 +5,11 @@ import { createUser } from "../../api/Api";
 
 interface ModalUserProps {
     isOpen: boolean;
-    setModalOpen: any;
+    setModalOpen: (isOpen: boolean) => void;
+    onClose: () => void;
 }
 
-export const ModalAddUser: React.FC<ModalUserProps> = ({isOpen, setModalOpen}) => {
+export const ModalAddUser: React.FC<ModalUserProps> = ({isOpen, setModalOpen, onClose}) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -48,7 +49,7 @@ export const ModalAddUser: React.FC<ModalUserProps> = ({isOpen, setModalOpen}) =
                     flexDirection: 'column',
                     alignItems: 'center'
                 }}>
-                    <img onClick={setModalOpen} style={{ height: '24px,', position: 'fixed', top: '3%', left: '93%' }} src="./src/assets/x.png"></img>
+                    <img onClick={onClose} style={{ height: '24px,', position: 'fixed', top: '3%', left: '93%' }} src="./src/assets/x.png"></img>
                     <h2 style={{ alignSelf: 'start', marginLeft: '45px', paddingTop: '50px' }}>Adcionar usuário</h2>
                     <form style={{
                         display: 'flex',

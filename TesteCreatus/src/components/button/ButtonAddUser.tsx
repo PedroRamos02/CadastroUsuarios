@@ -3,7 +3,12 @@ import { ModalAddUser } from "../modal/ModalAddUser";
 
 export default function ButtonAddUser () {
     const [open, setOpen] = React.useState(false);
-    
+
+    const handleCloseAndReload = () => {
+        setOpen(false);
+        window.location.reload();
+    };
+
     return (
         <>
         <button onClick={() => setOpen(true)} style={{
@@ -13,9 +18,10 @@ export default function ButtonAddUser () {
             height: '30px',
             width:'160px',
             fontSize: '16px',
-            borderStyle: 'none'
+            borderStyle: 'none',
+            cursor: 'pointer'
         }}>Adicionar usuário</button>
-        <ModalAddUser isOpen={open} setModalOpen={() => setOpen(!open)} />
+        <ModalAddUser isOpen={open} setModalOpen={() => setOpen(!open)} onClose={handleCloseAndReload} />
         </>
     )
 }

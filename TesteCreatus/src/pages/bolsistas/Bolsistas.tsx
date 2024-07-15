@@ -39,11 +39,7 @@ export default function Bolsistas () {
                 <h2>EMAIL</h2>
                 <h2>NÍVEL DE ACESSO</h2>
             </div>
-            <Card 
-                userName= 'Jorge'
-                email="jorge@ig.com"
-                acessLevel="3"
-            />
+            <Card />
             </Box>
         </Box>
     )

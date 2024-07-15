@@ -7,7 +7,8 @@ export default function ButtonReturn () {
             borderStyle: 'none',
             borderRadius: '6px',
             color: '#ffffff',
-            fontSize: '16px'
+            fontSize: '16px',
+            cursor: 'pointer'
         }}><a href="/bolsistas" style={{textDecoration: 'none', color: 'white'}}> Voltar para tabela</a></button>
     )
 }

@@ -32,6 +32,7 @@ export const ModalUser: React.FC<ModalUserProps> = ({ isOpen, setModalOpen, user
         const user = { name, email, password, accessLevel };
         await updateUser(userId, user);
         onUserUpdated();
+        setModalOpen(false);
       };
 
     if (isOpen) {
@@ -57,7 +58,7 @@ export const ModalUser: React.FC<ModalUserProps> = ({ isOpen, setModalOpen, user
                     flexDirection: 'column',
                     alignItems: 'center'
                 }}>
-                    <img onClick={setModalOpen} style={{ height: '24px,', position: 'fixed', top: '3%', left: '93%' }} src="./src/assets/x.png"></img>
+                    <img onClick={() => setModalOpen(false)} style={{ height: '24px,', position: 'fixed', top: '3%', left: '93%', cursor: 'pointer' }} src="./src/assets/x.png"></img>
                     <h2 style={{ alignSelf: 'start', marginLeft: '45px', paddingTop: '50px' }}>Editar usuário</h2>
                     <form  style={{
                         display: 'flex',

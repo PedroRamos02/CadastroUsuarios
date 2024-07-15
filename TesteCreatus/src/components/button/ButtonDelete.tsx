@@ -12,5 +12,5 @@ export const ButtonDelete: React.FC<ButtonDeleteProps> = ({ userId, onUserDelete
       onUserDeleted();
     };
 
-  return <img onClick={handleDelete} style={{height: '30px'}} src="./src/assets/trash.png"></img>;
+  return <img onClick={handleDelete} style={{height: '30px', cursor: 'pointer'}} src="./src/assets/trash.png"></img>;
 };

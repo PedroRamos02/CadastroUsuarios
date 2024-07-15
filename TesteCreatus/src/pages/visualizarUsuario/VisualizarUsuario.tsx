@@ -1,7 +1,27 @@
 import { Box } from "@mui/material";
 import ButtonReturn from "../../components/button/ButtonReturn";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getUserById } from "../../api/Api";
 
-export default function VisualizarUsuario() {
+export const VisualizarUsuario: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+    const [user, setUser] = useState<any | null>(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            if (id) {
+                const userData = await getUserById(id);
+                setUser(userData);
+            }
+        };
+        fetchUser();
+    }, [id]);
+
+    if (!user) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <Box sx={{
             backgroundColor: '#F6F6F6',
@@ -11,7 +31,7 @@ export default function VisualizarUsuario() {
             alignItems: 'center'
         }}>
             <Box sx={{
-                height: '882px',
+                height: '660px',
                 width: '1300px',
                 backgroundColor: '#FFFFFF',
                 borderRadius: '8px'
@@ -27,8 +47,8 @@ export default function VisualizarUsuario() {
                         alignItems: 'center',
                         marginLeft: '60px',
                     }}>
-                        <img style={{ marginRight: '20px', zIndex: '1' }} src="./src/assets/userIcon.png"></img>
-                        <h2>Jorge</h2>
+                        <img style={{ marginRight: '20px', zIndex: '1' }} src="../src/assets/userIcon.png"></img>
+                        <h2>{user.name}</h2>
                     </Box>
                     <ButtonReturn />
                 </header>
@@ -57,7 +77,7 @@ export default function VisualizarUsuario() {
                                 paddingLeft: '10px',
                                 marginRight: '30px',
                                 color: '#0000005C'
-                            }}>Jorge</p>
+                            }}>{user.name}</p>
                         </div>
                         <div>
                         <h3>Email</h3>
@@ -70,7 +90,7 @@ export default function VisualizarUsuario() {
                                 paddingLeft: '10px',
                                 marginRight: '30px',
                                 color: '#0000005C'
-                            }}>Jorge</p>
+                            }}>{user.email}</p>
                         </div>
                     </div>
                     <div style={{ display: 'flex' }}>
@@ -85,7 +105,7 @@ export default function VisualizarUsuario() {
                                 paddingLeft: '10px',
                                 marginRight: '30px',
                                 color: '#0000005C'
-                            }}>Jorge</p>
+                            }}>{user.accessLevel}</p>
                         </div>
                     </div>
                     <div style={{ display: 'flex' }}>
@@ -100,7 +120,7 @@ export default function VisualizarUsuario() {
                                 paddingLeft: '10px',
                                 marginRight: '30px',
                                 color: '#0000005C'
-                            }}>Jorge</p>
+                            }}>{user.password}</p>
                         </div>
                         <div>
                         <h3>Confirmar senha</h3>
@@ -113,7 +133,7 @@ export default function VisualizarUsuario() {
                                 paddingLeft: '10px',
                                 marginRight: '30px',
                                 color: '#0000005C'
-                            }}>Jorge</p>
+                            }}>{user.password}</p>
                         </div>
                     </div>
                 </Box>

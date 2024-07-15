@@ -7,7 +7,8 @@ export default function ButtonLogin () {
             borderStyle: 'none',
             borderRadius: '7px',
             color: '#ffffff',
-            fontSize: '16px'
+            fontSize: '16px',
+            cursor: 'pointer'
         }}
         type="submit">Login</button>
     )
