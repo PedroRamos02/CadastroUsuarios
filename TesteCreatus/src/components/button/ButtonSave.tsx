@@ -8,6 +8,7 @@ export default function ButtonSave () {
             borderRadius: '6px',
             color: '#ffffff',
             fontSize: '14px'
-        }}>Salvar</button>
+        }}
+        type="submit">Salvar</button>
     )
 }

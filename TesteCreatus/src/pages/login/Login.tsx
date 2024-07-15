@@ -1,8 +1,30 @@
 import { Box } from "@mui/material";
-import { Input } from "../../components/input/Input";
 import ButtonLogin from "../../components/button/ButtonLogin";
+import React, { useState } from "react";
+import { login } from "../../api/Api";
+import { useNavigate } from "react-router-dom";
 
-export default function Login () {
+export const Login: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await login(email, password);
+            if (response && response.token) {
+                localStorage.setItem('token', response.token);
+                navigate('bolsistas');
+            } else {
+                setError("Credenciais de login inválidas");
+            }
+        } catch (err) {
+            setError("Credenciais de login inválidas");
+        }
+    };
+
     return (
         <Box sx={{
             display: 'flex',
@@ -30,21 +52,46 @@ export default function Login () {
                         textAlign: 'center',
                         fontSize: '38px'
                     }}>Bem vindo</h1>
-                    <Input
-                        labelType="Email"
-                        inputType="mail"
-                        placeholderText="   Email"
-                        largura="455"
-                        spaceBottom="25"
-                    />
-                    <Input
-                        labelType="Senha"
-                        inputType="password"
-                        placeholderText="    Senha"
-                        largura="455"
-                        spaceBottom="50"
-                    />
-                    <ButtonLogin />
+                    <form onSubmit={handleSubmit}>
+                        <p style={{
+                            fontStyle: '16px',
+                            marginBottom: '10px'
+                        }}>Email</p>
+                        <input style={{
+                            width:'460px',
+                            height:'48px',
+                            borderRadius: '9px',
+                            borderStyle:'solid',
+                            borderWidth: '1px',
+                        }}
+                            type="email"
+                            placeholder="   Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <p style={{
+                            fontStyle: '16px',
+                            marginBottom: '10px'
+                        }}>Senha</p>
+                        <input style={{
+                            width:'460px',
+                            height:'48px',
+                            borderRadius: '9px',
+                            borderStyle:'solid',
+                            borderWidth: '1px',
+                        }}
+                            type="password"
+                            placeholder="   Senha"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        {error && <p style={{ color: 'red' }}>{error}</p>}
+                        <div style={{marginTop: '40px'}}>
+                            <ButtonLogin />
+                        </div>
+                    </form>
                 </Box>
             </Box>
         </Box>

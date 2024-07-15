@@ -2,17 +2,37 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8080';
 
+const encodeBase64 = (email: string, password: string) => {
+  return btoa(`${email}:${password}`);
+};
+
 export const login = async (email: string, password: string) => {
-  const response = await axios.post(`${API_URL}/login`, { email, password }, {
-    headers: {
-      'Content-Type': 'application/json'
+  try {
+    const encodedCredentials = encodeBase64(email, password);
+    const response = await axios.post(`${API_URL}/login`, {}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${encodedCredentials}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message || 'Login failed');
     }
-  });
-  return response.data;
+    throw error;
+  }
+};
+
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('token');
+  return { Authorization: `Bearer ${token}` };
 };
 
 export const getUsers = async () => {
-  const response = await axios.get(`${API_URL}/users`);
+  const response = await axios.get(`${API_URL}/users`, {
+    headers: getAuthHeaders()
+  });
   return response.data;
 };
 
@@ -33,13 +53,16 @@ export const createUser = async (user: any) => {
 export const updateUser = async (id: string, user: any) => {
   const response = await axios.put(`${API_URL}/user/${id}`, user, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      ...getAuthHeaders()
     }
   });
   return response.data;
 };
 
 export const deleteUser = async (id: string) => {
-  const response = await axios.delete(`${API_URL}/user/${id}`);
+  const response = await axios.delete(`${API_URL}/user/${id}`, {
+    headers: getAuthHeaders()
+  });
   return response.data;
 };

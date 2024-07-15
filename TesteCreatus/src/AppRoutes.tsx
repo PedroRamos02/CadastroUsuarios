@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/login/Login";
 import Bolsistas from "./pages/bolsistas/Bolsistas";
 import VisualizarUsuario from "./pages/visualizarUsuario/VisualizarUsuario";
+import { Login } from "./pages/login/Login";
 
 export default function AppRoutes() {
   

@@ -49,70 +49,84 @@ export const ModalAddUser: React.FC<ModalUserProps> = ({isOpen, setModalOpen}) =
                     alignItems: 'center'
                 }}>
                     <img onClick={setModalOpen} style={{ height: '24px,', position: 'fixed', top: '3%', left: '93%' }} src="./src/assets/x.png"></img>
-                    <h2 style={{alignSelf: 'start', marginLeft: '45px', paddingTop: '10px'}}>Adcionar usuário</h2>
-                    <div>
+                    <h2 style={{ alignSelf: 'start', marginLeft: '45px', paddingTop: '50px' }}>Adcionar usuário</h2>
+                    <form style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textDecoration: 'none'
+                    }} onSubmit={handleSubmit}>
                         <p style={{ marginBottom: '0.5px'}}>Nome</p>
-                        <p style={{
+                        <input style={{
                             width: '570px',
                             height: '40px',
                             borderRadius: '6px',
                             border: '1px solid #E2E8F0',
                             alignContent: 'center',
                             paddingLeft: '10px',
-                            marginTop: '0'
-                        }}>Jorge</p>
-                    </div>
-                    <div>
+                            marginTop: '10px'
+                        }}
+                            type="text"
+                            placeholder="Nome"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
                         <p style={{ marginBottom: '0.5px'}}>Email</p>
-                        <p style={{
+                        <input style={{
                             width: '570px',
                             height: '40px',
                             borderRadius: '6px',
                             border: '1px solid #E2E8F0',
                             alignContent: 'center',
                             paddingLeft: '10px',
-                            marginTop: '0'
-                        }}>Jorge</p>
-                    </div>
-                    <div>
-                        <p style={{ marginBottom: '0.5px'}}>Nível de Acesso</p>
-                        <p style={{
+                            marginTop: '10px'
+                        }}
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <p style={{ marginBottom: '0.5px'}}>Nível de acesso</p>
+                        <input style={{
                             width: '570px',
                             height: '40px',
                             borderRadius: '6px',
                             border: '1px solid #E2E8F0',
                             alignContent: 'center',
                             paddingLeft: '10px',
-                            marginTop: '0'
-                        }}>Jorge</p>
-                    </div>
-                    <div>
+                            marginTop: '10px'
+                        }}
+                            type="text"
+                            placeholder="Nível de acesso"
+                            value={accessLevel}
+                            onChange={(e) => setAccessLevel(e.target.value)}
+                            required
+                        />
                         <p style={{ marginBottom: '0.5px'}}>Senha</p>
-                        <p style={{
+                        <input style={{
                             width: '570px',
                             height: '40px',
                             borderRadius: '6px',
                             border: '1px solid #E2E8F0',
                             alignContent: 'center',
                             paddingLeft: '10px',
-                            marginTop: '0'
-                        }}>Jorge</p>
-                    </div>
-                    <div>
-                        <p style={{ marginBottom: '0.5px'}}>Confirmar senha</p>
-                        <p style={{
-                            width: '570px',
-                            height: '40px',
-                            borderRadius: '6px',
-                            border: '1px solid #E2E8F0',
-                            alignContent: 'center',
-                            paddingLeft: '10px',
-                            marginTop: '0'
-                        }}>Jorge</p>
-                    </div>
-                    <div style={{alignSelf: 'end', margin: '20px 50px 0 0' }}>
-                        <ButtonSave />
-                    </div>
+                            marginTop: '10px'
+                        }}
+                            type="password"
+                            placeholder="Senha"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <div style={{ 
+                            position: 'relative',
+                            top: '100px',
+                            left: '510px'
+                        }}>
+                            <ButtonSave />
+                        </div>
+                    </form>
                 </Box>
             </Box>
         )

@@ -8,6 +8,7 @@ export default function ButtonLogin () {
             borderRadius: '7px',
             color: '#ffffff',
             fontSize: '16px'
-        }}>Login</button>
+        }}
+        type="submit">Login</button>
     )
 }
