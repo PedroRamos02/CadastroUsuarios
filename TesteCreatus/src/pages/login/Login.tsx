@@ -14,14 +14,13 @@ export const Login: React.FC = () => {
         e.preventDefault();
         try {
             const response = await login(email, password);
-            if (response && response.token) {
-                localStorage.setItem('token', response.token);
+            if (response) {
                 navigate('bolsistas');
             } else {
-                setError("Credenciais de login inválidas");
+                setError("Dados incorretos");
             }
         } catch (err) {
-            setError("Credenciais de login inválidas");
+            setError("Dados incorretos");
         }
     };
 
